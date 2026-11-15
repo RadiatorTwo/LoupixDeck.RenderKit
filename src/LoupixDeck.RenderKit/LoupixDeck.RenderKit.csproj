@@ -8,6 +8,8 @@
     <DebugType>embedded</DebugType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Ported members keep their original, partial XML docs. -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
 
     <PackageId>LoupixDeck.RenderKit</PackageId>
     <Version>1.0.0</Version>
