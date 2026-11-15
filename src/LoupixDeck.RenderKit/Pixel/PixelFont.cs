@@ -12,10 +12,23 @@ public static class PixelFont
     public const int Height = 7;
 
     /// <summary>One glyph: its width in font pixels and one bit mask per row, the leftmost column
-    /// in the highest of <see cref="Width"/> bits.</summary>
-    public readonly record struct Glyph(int Width, int[] Rows)
+    /// in the highest of <see cref="Width"/> bits.
+    /// The row masks stay private: glyphs are shared by every caller, so they must not be mutable.</summary>
+    public readonly struct Glyph
     {
-        public bool IsSet(int row, int column) => (Rows[row] & (1 << (Width - 1 - column))) != 0;
+        private readonly int[] _rows;
+
+        internal Glyph(int width, int[] rows)
+        {
+            Width = width;
+            _rows = rows;
+        }
+
+        /// <summary>Width in font pixels (before scaling).</summary>
+        public int Width { get; }
+
+        /// <summary>Whether the font pixel at <paramref name="row"/>, <paramref name="column"/> is set.</summary>
+        public bool IsSet(int row, int column) => (_rows[row] & (1 << (Width - 1 - column))) != 0;
     }
 
     private static readonly Dictionary<char, Glyph> Glyphs = BuildGlyphs();
