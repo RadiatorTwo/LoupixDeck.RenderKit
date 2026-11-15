@@ -17,6 +17,9 @@ public static class PixelTile
     public const int TargetFps = 4;
 
     /// <summary>Draws one frame with <paramref name="draw"/> and presents it on <paramref name="canvas"/>.</summary>
+    /// <param name="ctx">The command context of the button being drawn (reserved for per-button rendering).</param>
+    /// <param name="canvas">The host canvas; its size decides where the content grid is centred.</param>
+    /// <param name="draw">Draws the frame in design coordinates.</param>
     /// <param name="transparent">Draw on <see cref="PixelPalette.Transparent"/> instead of <see cref="PixelPalette.Default"/>.</param>
     public static AnimationFrameInfo Render(CommandContext ctx, IRenderCanvas canvas, bool transparent, Action<PixelSurface> draw)
     {
