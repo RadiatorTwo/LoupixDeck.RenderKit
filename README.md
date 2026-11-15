@@ -31,3 +31,16 @@ public AnimationFrameInfo RenderAnimatedFrame(CommandContext ctx, IRenderCanvas 
 ## License
 
 MIT
+
+## Releasing
+
+1. Bump `<Version>` in `src/LoupixDeck.RenderKit/LoupixDeck.RenderKit.csproj`.
+2. Publish a GitHub release tagged `v<version>`. `nuget-release.yml` checks the tag against the
+   version, runs the tests and pushes the package to nuget.org.
+
+nuget.org needs a Trusted Publishing policy for this repository before the first release (see the
+header of `.github/workflows/nuget-release.yml`). A manual run of the workflow packs without
+pushing.
+
+For local plugin development, `dotnet pack src/LoupixDeck.RenderKit -c Release` writes the package
+to `nupkg/`; point a plugin's `nuget.config` at that folder.
