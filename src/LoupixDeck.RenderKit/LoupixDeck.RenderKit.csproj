@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>default</LangVersion>
+    <DebugType>embedded</DebugType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PackageId>LoupixDeck.RenderKit</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>RadiatorTwo</Authors>
+    <Description>Pixel-exact tile rendering for LoupixDeck plugins: a 5x7 bitmap font, an ARGB framebuffer on the 72x72 content grid and tile building blocks (header, hero value, gauge bar, history chart).</Description>
+    <PackageProjectUrl>https://github.com/RadiatorTwo/LoupixDeck.RenderKit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RadiatorTwo/LoupixDeck.RenderKit</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>loupixdeck;loupedeck;plugin;rendering;pixel</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageOutputPath>$(MSBuildProjectDirectory)\..\..\nupkg</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The host provides the SDK at runtime; never ship it. -->
+    <PackageReference Include="LoupixDeck.PluginSdk" Version="1.28.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/LoupixDeck.RenderKit/LoupixDeck.RenderKit.csproj" />
+  <Project Path="tests/LoupixDeck.RenderKit.Tests/LoupixDeck.RenderKit.Tests.csproj" />
+</Solution>
