@@ -51,8 +51,12 @@ public sealed class PixelSurface
         int right = Math.Min(Width, x + _offsetX + width);
         int bottom = Math.Min(Height, y + _offsetY + height);
 
+        // A rectangle entirely outside the canvas must not index past the buffer.
+        if (right <= left || bottom <= top)
+            return;
+
         for (int row = top; row < bottom; row++)
-            _pixels.AsSpan((row * Width) + left, Math.Max(0, right - left)).Fill(color);
+            _pixels.AsSpan((row * Width) + left, right - left).Fill(color);
     }
 
     /// <summary>
