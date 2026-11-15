@@ -60,7 +60,7 @@ public static class TileDrawing
     /// fills it amber; critical fills it red on the blink's on phase and frames it in red on the off
     /// phase. Colour is never the only cue: a critical header shows "!" instead of the index.
     /// </summary>
-    public static void Header(PixelSurface surface, string title, string? index, TileState state, bool blinkOn)
+    public static void Header(PixelSurface surface, string? title, string? index, TileState state, bool blinkOn)
     {
         PixelPalette p = surface.Palette;
         bool alert = state != TileState.Ok;
@@ -180,10 +180,10 @@ public static class TileDrawing
     }
 
     /// <summary>Cuts <paramref name="text"/> from the end until it fits <paramref name="maxWidth"/>
-    /// at <paramref name="scale"/>.</summary>
-    public static string Fit(string text, int maxWidth, int scale = 1, int spacing = -1)
+    /// at <paramref name="scale"/>. Null counts as empty: titles often come from external data.</summary>
+    public static string Fit(string? text, int maxWidth, int scale = 1, int spacing = -1)
     {
-        string fitted = text.Trim();
+        string fitted = (text ?? string.Empty).Trim();
         while (fitted.Length > 0 && PixelFont.Measure(fitted, scale, spacing) > maxWidth)
             fitted = fitted[..^1].TrimEnd();
 

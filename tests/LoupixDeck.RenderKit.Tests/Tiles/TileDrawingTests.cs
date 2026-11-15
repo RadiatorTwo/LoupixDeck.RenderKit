@@ -74,6 +74,16 @@ public sealed class TileDrawingTests
     }
 
     [Fact]
+    public void Header_NullTitle_DoesNotThrow()
+    {
+        PixelSurface surface = new(90, 90, D);
+        TileDrawing.Header(surface, null!, null, TileState.Ok, true);
+    }
+
+    [Fact]
+    public void Fit_Null_ReturnsEmpty() => Assert.Equal(string.Empty, TileDrawing.Fit(null!, 40));
+
+    [Fact]
     public void Worst_ReturnsMostSevere() =>
         Assert.Equal(TileState.Critical, TileDrawing.Worst([TileState.Ok, TileState.Critical, TileState.Warn]));
 }
